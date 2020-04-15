@@ -1,0 +1,14 @@
+<kendo-toolbar>
+	<kendo-toolbar-button *ngFor="let a of toolbar" [title]="a.title" [icon]="a.icon"
+		[showIcon]="'both'" [primary]="true" [look]="look" [disabled]="false" [tabIndex]="tabIndex"
+		(click)="a.action()">
+	</kendo-toolbar-button>
+</kendo-toolbar>
+
+<kendo-tabstrip (tabSelect)="onTabSelect($event)" [keepTabContent]="true">
+	<kendo-tabstrip-tab *ngFor="let t of tabs" [title]="getTitle(t)" (click)="setToolbar(t)">
+		<ng-template kendoTabContent>
+			<ndc-dynamic [ndcDynamicComponent]="t.component"></ndc-dynamic>
+		</ng-template>
+	</kendo-tabstrip-tab>
+</kendo-tabstrip>
